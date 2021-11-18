@@ -17,13 +17,28 @@ steps:
     version: '6.0.x'
     includePreviewVersions: true
 - task: DotNetCoreCLI@2
+  displayName: "Publish function"
   inputs:
-    command: 'build'
+    command: 'publish'
     projects: 'Test/Test.csproj'
+    arguments: '--configuration Release --output publish_output'
+    publishWebProjects: false
+    modifyOutputPath: false
+    zipAfterPublish: false
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'elicznik-billing-persiod-conn'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: 'deploy.sh'
-  displayName: 'Run deployment script'
+  displayName: 'Run infrastructure deployment script'
+- task: ArchiveFiles@2
+  displayName: "Archive function"
+  inputs:
+    rootFolderOrFile: "$(System.DefaultWorkingDirectory)/publish_output"
+    includeRootFolder: false
+    archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+    artifactName: 'drop'
