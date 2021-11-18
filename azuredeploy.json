@@ -10,7 +10,9 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "templatelink": "https://raw.githubusercontent.com/barpod/azure-arm-templates-playground/master/functionappdeploy.json"
+    },
 
     "resources": [
         {
@@ -19,6 +21,19 @@
             "location": "[parameters('rgLocation')]",
             "name": "[parameters('rgName')]",
             "properties": {}
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "nestedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('templatelink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {}
+            }
         }
     ],
     "outputs": {}
