@@ -4,6 +4,9 @@
     "parameters": {
         "functionAppName": {
             "type": "string"
+        },
+        "location": {
+            "type": "string",
         }
     },
     "variables": {
@@ -22,7 +25,7 @@
             "name": "[parameters('functionAppName')]",
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "tags": {},
             "dependsOn": [
                 "[concat('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]",
@@ -64,7 +67,7 @@
             "apiVersion": "2018-11-01",
             "name": "[variables('hostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "kind": "",
             "tags": {},
             "dependsOn": [],
@@ -84,7 +87,7 @@
             "apiVersion": "2019-06-01",
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storageAccountName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "tags": {},
             "sku": {
                 "name": "Standard_LRS"

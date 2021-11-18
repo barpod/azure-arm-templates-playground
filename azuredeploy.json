@@ -39,6 +39,9 @@
                 "parameters": {
                     "functionAppName": {
                         "value": "[parameters('functionAppName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('rgLocation')]"
                     }
                 }
             }
