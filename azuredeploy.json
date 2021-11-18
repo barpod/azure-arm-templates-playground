@@ -11,6 +11,7 @@
     },
     "functions": [],
     "variables": {},
+
     "resources": [
         {
             "type": "Microsoft.Resources/resourceGroups",
