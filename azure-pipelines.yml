@@ -10,6 +10,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'Test/Test.csproj'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'elicznik-billing-persiod-conn'
