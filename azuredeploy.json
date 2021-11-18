@@ -26,6 +26,7 @@
             "apiVersion": "2015-01-01",
             "name": "nestedTemplate",
             "type": "Microsoft.Resources/deployments",
+            "location": "[parameters('rgLocation')]",
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
