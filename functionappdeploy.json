@@ -2,7 +2,7 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "name": {
+        "functionAppName": {
             "type": "string"
         }
     },
@@ -19,7 +19,7 @@
     "resources": [
         {
             "apiVersion": "2018-11-01",
-            "name": "[parameters('name')]",
+            "name": "[parameters('functionAppName')]",
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
             "location": "[resourceGroup().location]",
@@ -29,7 +29,7 @@
                 "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
             ],
             "properties": {
-                "name": "[parameters('name')]",
+                "name": "[parameters('functionAppName')]",
                 "siteConfig": {
                     "appSettings": [
                         {
@@ -50,7 +50,7 @@
                         },
                         {
                             "name": "WEBSITE_CONTENTSHARE",
-                            "value": "[concat(toLower(parameters('name')), '874c')]"
+                            "value": "[concat(toLower(parameters('functionAppName')), '874c')]"
                         }
                     ],
                     "use32BitWorkerProcess": true,

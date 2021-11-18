@@ -7,6 +7,9 @@
         },
         "rgLocation": {
             "type": "string"
+        },
+        "functionAppName": {
+            "type": "string"
         }
     },
     "functions": [],
@@ -33,7 +36,11 @@
                     "uri": "[variables('templatelink')]",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters": {}
+                "parameters": {
+                    "functionAppName": {
+                        "value": "[parameters('functionAppName')]"
+                    }
+                }
             }
         }
     ],
