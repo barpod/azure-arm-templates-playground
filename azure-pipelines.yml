@@ -6,6 +6,10 @@
 trigger:
 - master
 
+variables:
+- name: function.app.name
+  value: elicznik-billing-period 
+
 pool:
   vmImage: ubuntu-latest
 
