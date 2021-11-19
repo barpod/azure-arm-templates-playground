@@ -46,6 +46,6 @@ steps:
   inputs:
     azureSubscription: 'elicznik-billing-period-conn'
     appType: 'functionApp'
-    appName: 'fnappafrs2zoaxcrsc'
+    appName: $(function.app.name)
     package: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
     deploymentMethod: 'auto'
